@@ -111,4 +111,27 @@ class IOView (ctx : Context) : View(ctx) {
             state.startUpdating(startcb)
         }
     }
+
+    data class Renderer (var view : IOView) {
+
+        private val animator : Animator = Animator(view)
+
+        private val ioShape : IOShape = IOShape(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(Color.parseColor("#212121"))
+            ioShape.draw(canvas, paint)
+            animator.animate {
+                ioShape.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ioShape.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
