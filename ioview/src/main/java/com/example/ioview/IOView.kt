@@ -93,7 +93,7 @@ class IOView (ctx : Context) : View(ctx) {
             paint.strokeWidth = size / 5
             paint.strokeCap = Paint.Cap.ROUND
             canvas.save()
-            canvas.translate(w/2, h/2)
+            canvas.translate(w/2 - size/7, h/2)
             for (i in 0..1) {
                 canvas.save()
                 canvas.translate(-(size/2) * (1 - i) * state.scales[0], 0f)
