@@ -96,13 +96,13 @@ class IOView (ctx : Context) : View(ctx) {
             canvas.translate(w/2, h/2)
             for (i in 0..1) {
                 canvas.save()
-                canvas.translate((size/2) * (1 - i) * state.scales[0], 0f)
-                canvas.rotate(45f * i * state.scales[1])
+                canvas.translate(-(size/2) * (1 - i) * state.scales[0], 0f)
+                canvas.rotate(30f * i * state.scales[1])
                 canvas.drawLine(0f, -size/2, 0f, size/2, paint)
                 canvas.restore()
             }
             paint.style = Paint.Style.STROKE
-            canvas.drawCircle(size, (h/2 + size/2) * state.scales[2], size/2, paint)
+            canvas.drawCircle(size, (h/2 + size) * (1 - state.scales[2]), size/2, paint)
             canvas.restore()
         }
 
