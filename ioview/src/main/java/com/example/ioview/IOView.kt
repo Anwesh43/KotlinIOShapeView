@@ -3,6 +3,7 @@ package com.example.ioview
 /**
  * Created by anweshmishra on 10/05/18.
  */
+import android.app.Activity
 import android.content.*
 import android.graphics.*
 import android.view.*
@@ -134,6 +135,14 @@ class IOView (ctx : Context) : View(ctx) {
             ioShape.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+        fun create(activity : Activity) : IOView {
+            val view : IOView = IOView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }
