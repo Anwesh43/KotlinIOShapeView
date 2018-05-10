@@ -79,4 +79,36 @@ class IOView (ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class IOShape (var i : Int, val state : State = State()) {
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            val w : Float = canvas.width.toFloat()
+            val h : Float = canvas.height.toFloat()
+            val size : Float = Math.min(w, h) / 15
+            paint.color = Color.WHITE
+            paint.strokeWidth = size / 5
+            paint.strokeCap = Paint.Cap.ROUND
+            canvas.save()
+            canvas.translate(w/2, h/2)
+            for (i in 0..1) {
+                canvas.save()
+                canvas.translate((size/2) * (1 - i) * state.scales[0], 0f)
+                canvas.rotate(45f * i * state.scales[1])
+                canvas.drawLine(0f, -size/2, 0f, size/2, paint)
+                canvas.restore()
+            }
+            paint.style = Paint.Style.STROKE
+            canvas.drawCircle(size, (h/2 + size/2) * state.scales[2], size/2, paint)
+            canvas.restore()
+        }
+
+        fun update(stopcb : (Float) -> Unit) {
+            state.update(stopcb)
+        }
+
+        fun startUpdating(startcb : () -> Unit) {
+            state.startUpdating(startcb)
+        }
+    }
 }
