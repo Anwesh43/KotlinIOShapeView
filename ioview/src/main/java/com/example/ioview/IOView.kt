@@ -89,7 +89,7 @@ class IOView (ctx : Context) : View(ctx) {
             val w : Float = canvas.width.toFloat()
             val h : Float = canvas.height.toFloat()
             val size : Float = 2 * Math.min(w, h) / 7
-            paint.color = Color.WHITE
+            paint.color = Color.parseColor("#1abc9c")
             paint.strokeWidth = size / 5
             paint.strokeCap = Paint.Cap.ROUND
             canvas.save()
